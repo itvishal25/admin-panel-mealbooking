@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     }
 });
 
-mongoose.connect('mongodb://localhost:27017/organization', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/Booking', { useNewUrlParser: true })
     .then(() => {
         console.log('Connected with organization database');
     })
