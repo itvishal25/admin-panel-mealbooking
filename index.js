@@ -1,37 +1,33 @@
-const express = require('express');
+const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const userRouter = require("./routes/user");
+const bodyParser = require("body-parser");
 
-const mongoose = require('mongoose');
-// const userRouter = require('./routes/user')
-
-const empRouter = require('./routes/nonEmpBooking')
-
+app.use(bodyParser.json());
 app.use(express.json());
-
-app.use('/nonemp',empRouter);
-
-app.get('/', (req, res) => {
-    // return res.status(200).type('html').send('<marquee><h1>Organization server working</h1></marquee>');
-    try {
-        return res.status(200).type('html').send('<marquee><h1>New Booking Server working</h1></marquee>');
-        // return res.send(200).send({data : 'ok'})
-    } catch (error) {
-        console.log('init server error', error);
-        return res.status(500).send('something went wrong please try after time');
-    }
+app.use("/user", userRouter);
+// app.use("/")
+app.get("/", (req, res) => {
+  // 200
+  return res.status(200).send({ message: "Get Request", data: "user get successfully" });
 });
 
-mongoose.connect('mongodb://localhost:27017/non-emp-booking', { useNewUrlParser: true })
-    .then(() => {
-        console.log('Connected with organization database');
-    })
-    .catch(() => {
-        console.log('Connection failed');
-    });
+mongoose.connect("mongodb://127.0.0.1:27017/admin_panel", { useNewUrlParser: true })
+  .then(() => {
+    console.log("conneted with database succesfully");
+  })
+  .catch(() => {
+    console.log("connection failed");
+  })
 
-const port = 4000;
-
-app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
+app.listen(3030, () => {
+  console.log("server is listening on 3030");
 });
 
+// CRUD
+
+// CREATE -> post
+// READ -> get
+// UPDATE -> patch, put
+// DELETE -> delete

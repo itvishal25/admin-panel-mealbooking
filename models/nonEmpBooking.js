@@ -8,7 +8,7 @@ const bookingSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true,
+    required: true,  
   },
   count: {
     type: Number,

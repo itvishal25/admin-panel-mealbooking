@@ -4,7 +4,7 @@ const Booking = require('../models/nonEmpBooking');
 
 // Add New Booking: Non-Employees
 router.post('/nonemployees', async (req, res) => {
-  try {
+  try {  
     const { dates, count, notes } = req.body;
     const booking = new Booking({ dates, count, notes });
     await booking.save();
